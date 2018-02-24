@@ -1,0 +1,20 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	letter-spacing: 0.06em;
+
+	/* Disable tap overlay color on links (Android / iOS Safari) by making the highlight transparent */
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+.theme--dark body {
+	background-color: black;
+	color: white;
+}
+
+.theme--light body {
+	background-color: white;
+	color: black;
+}
