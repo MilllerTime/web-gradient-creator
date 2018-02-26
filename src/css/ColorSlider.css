@@ -1,0 +1,20 @@
+.colorSlider {
+	display: flex;
+	align-items: center;
+}
+
+.colorSlider__label {
+	margin-right: 16px;
+}
+
+.colorSlider__slider {
+	width: 100%;
+}
+
+.colorSlider__slider > div {
+	margin: 0 !important;
+}
+
+.colorSlider__text {
+	margin-left: 16px;
+}

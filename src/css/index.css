@@ -10,11 +10,22 @@ body {
 
 
 .theme--dark body {
-	background-color: black;
+	background-color: #111;
 	color: white;
 }
 
 .theme--light body {
 	background-color: white;
 	color: black;
+}
+
+input[type=number] {
+	text-align: right;
+}
+
+.gradient-canvas {
+	display: block;
+	width: 100%;
+	max-width: 640px;
+	height: 60px;
 }

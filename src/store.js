@@ -1,9 +1,13 @@
 import { createStore, combineReducers, compose } from 'redux';
 
+import uiReducer from 'ducks/ui';
+import activeGradientReducer from 'ducks/activeGradient';
+
 
 
 const rootReducer = combineReducers({
-	test: state => ({})
+	ui: uiReducer,
+	activeGradient: activeGradientReducer
 });
 
 const enhancer = compose(

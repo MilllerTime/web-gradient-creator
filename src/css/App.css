@@ -1,11 +1,15 @@
 .app {
-	max-width: 600px;
 	margin: 0 auto;
 	padding: 40px 20px;
 }
 
 .app > div {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
-	margin-top: 20px;
+	align-items: center;
+}
+
+.stop-count-slider > div {
+	margin: 0 !important;
 }

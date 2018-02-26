@@ -52,7 +52,8 @@ blockquote, q {
 	box-sizing: border-box;
 
 	/* Doesn't affect layout, and more times than not makes positioning "just work". */
-	position: relative;
+	/* Disabling because it does break some layout with Material Design UI. */
+	/* position: relative; */
 }
 
 

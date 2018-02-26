@@ -1,0 +1,24 @@
+.stopEditor {
+	overflow: hidden;
+	margin: 30px 16px;
+	width: 300px;
+}
+
+.stopEditor__preview {
+	height: 40px;
+}
+
+.stopEditor__form {
+	padding: 20px;
+}
+
+.stopEditor .colorSlider {
+	margin-top: 6px;
+}
+
+.stopEditor__rgb {
+	margin-top: 18px;
+	text-align: center;
+	font-size: 0.82rem;
+	color: #777;
+}
