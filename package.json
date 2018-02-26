@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chroma-js": "^1.3.6",
     "classnames": "^2.2.5",
     "material-ui": "^0.20.0",
     "prop-types": "^15.6.0",
@@ -19,5 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "deep-freeze": "^0.0.1"
   }
 }
