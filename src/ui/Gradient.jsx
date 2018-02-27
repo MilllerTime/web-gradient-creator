@@ -1,15 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import chroma from 'chroma-js';
 
 import { simulatedGradientSelector } from 'ducks/activeGradient';
 
 import 'css/Gradient.css';
 
 
-
-const canvasWidth = 16;
 
 class Gradient extends React.Component {
 	render() {

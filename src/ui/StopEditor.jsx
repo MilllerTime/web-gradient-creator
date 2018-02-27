@@ -82,7 +82,7 @@ class StopEditor extends React.Component {
 	}
 
 	render() {
-		const { stopIndex, stop } = this.props;
+		const { stop } = this.props;
 		const { cssFocus, cssValue } = this.state;
 
 		return (
