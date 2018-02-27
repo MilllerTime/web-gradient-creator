@@ -1,18 +1,20 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 
 import uiReducer from 'ducks/ui';
 import activeGradientReducer from 'ducks/activeGradient';
+import toastsReducer from 'ducks/toasts';
 
 
 
 const rootReducer = combineReducers({
 	ui: uiReducer,
-	activeGradient: activeGradientReducer
+	activeGradient: activeGradientReducer,
+	toasts: toastsReducer
 });
 
 const enhancer = compose(
-	// applyMiddleware(ReduxThunk),
-	// applyMiddleware(ReduxThunk.withExtraArgument(api)),
+	applyMiddleware(ReduxThunk),
 	window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 

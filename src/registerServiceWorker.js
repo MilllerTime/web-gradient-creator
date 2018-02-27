@@ -1,3 +1,9 @@
+import store from 'store';
+import ToastType from 'enums/ToastType';
+import { pushToast } from 'ducks/toasts';
+
+
+
 // In production, we register a service worker to serve assets from local cache.
 
 // This lets the app load faster on subsequent visits in production, and gives
@@ -65,12 +71,12 @@ function registerValidSW(swUrl) {
               // the fresh content will have been added to the cache.
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
-              console.log('New content is available; please refresh.');
+              store.dispatch(pushToast(ToastType.SW_UPDATE, 15000));
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.');
+              store.dispatch(pushToast(ToastType.SW_INSTALL));
             }
           }
         };
@@ -102,9 +108,7 @@ function checkValidServiceWorker(swUrl) {
       }
     })
     .catch(() => {
-      console.log(
-        'No internet connection found. App is running in offline mode.'
-      );
+      store.dispatch(pushToast(ToastType.OFFLINE));
     });
 }
 

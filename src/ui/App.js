@@ -11,6 +11,7 @@ import DocumentClass from 'ui/DocumentClass';
 import GradientConfig from 'ui/GradientConfig';
 import StopEditor from 'ui/StopEditor';
 import Gradient from 'ui/Gradient';
+import Toaster from 'ui/Toaster';
 import { backgroundSelector } from 'ducks/activeGradient';
 
 import 'css/App.css';
@@ -46,6 +47,7 @@ const App = ({ background }) => {
 				<div>
 					<Gradient />
 				</div>
+				<Toaster />
 			</div>
 		</MuiThemeProvider>
 	);

@@ -4,6 +4,8 @@
 ////////////////////////
 
 export const SET_ACTIVE_STOP = 'SET_ACTIVE_STOP';
+export const PUSH_TOAST = 'PUSH_TOAST';
+export const POP_TOAST = 'POP_TOAST';
 
 
 /////////////////////////////
