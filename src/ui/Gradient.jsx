@@ -6,7 +6,7 @@ import chroma from 'chroma-js';
 import { stopsSelector } from 'ducks/activeGradient';
 
 
-const canvasWidth = 200;
+const canvasWidth = 100;
 
 class Gradient extends React.Component {
 
