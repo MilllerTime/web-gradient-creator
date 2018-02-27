@@ -47,6 +47,7 @@ const GradientConfig = (props) => {
 				<ColorSpaceSelector
 					floatingLabelText="Color Space"
 					hideRGB
+					hideAll
 					value={colorSpace}
 					onChange={setColorSpace}
 				/>
@@ -57,7 +58,7 @@ const GradientConfig = (props) => {
 					value={stopCount}
 					onChange={setStopCount}
 					min={2}
-					max={10}
+					max={16}
 					step={1}
 					style={{ width: 200 }}
 				/>

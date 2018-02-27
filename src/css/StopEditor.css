@@ -16,9 +16,10 @@
 	margin-top: 6px;
 }
 
-.stopEditor__rgb {
+.stopEditor__css {
 	margin-top: 18px;
+}
+
+.stopEditor__css input {
 	text-align: center;
-	font-size: 0.82rem;
-	color: #777;
 }

@@ -3,59 +3,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 import chroma from 'chroma-js';
 
-import { stopsSelector } from 'ducks/activeGradient';
+import { simulatedGradientSelector } from 'ducks/activeGradient';
+
+import 'css/Gradient.css';
 
 
-const canvasWidth = 100;
+
+const canvasWidth = 16;
 
 class Gradient extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
-
-	componentDidMount() {
-		this.drawGradient();
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		this.drawGradient();
-	}
-
-	drawGradient() {
-		const { stops } = this.props;
-
-		const stop1 = stops[0];
-		const stop2 = stops[1];
-		const stop1Color = chroma.lab(stop1.l, stop1.a, stop1.b);
-		const stop2Color = chroma.lab(stop2.l, stop2.a, stop2.b);
-
-		const ctx = this.canvas.getContext('2d');
-
-		for (let i=0; i<canvasWidth; i++) {
-			const ratio = i / canvasWidth;
-			const color = chroma.mix(stop1Color, stop2Color, ratio, 'lab');
-			ctx.fillStyle = color.css();
-			// Single pixel
-			ctx.fillRect(i, 0, 1, 1);
-		}
-	}
-
 	render() {
+		const { simulatedGradient } = this.props;
+
 		return (
-			<canvas
-				className="gradient-canvas"
-				width={canvasWidth}
-				height="1"
-				ref={node => this.canvas = node}
-			/>
+			<div className="gradient">
+				<div
+					className="gradient__gfx"
+					style={{ background: simulatedGradient }}
+				/>
+				<pre className="gradient__code">
+					{simulatedGradient}
+				</pre>
+			</div>
 		);
 	}
 }
 
 
 const mapStateToProps = state => ({
-	stops: stopsSelector(state)
+	simulatedGradient: simulatedGradientSelector(state)
 });
 
 export default connect(mapStateToProps)(Gradient);

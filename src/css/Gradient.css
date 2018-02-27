@@ -1,0 +1,16 @@
+.gradient {
+	width: 100%;
+	max-width: 630px;
+}
+
+.gradient__gfx {
+	display: block;
+	width: 100%;
+	height: 60px;
+	margin-bottom: 12px;
+}
+
+.gradient__code {
+	opacity: 0.75;
+	font-size: 0.8rem;
+}

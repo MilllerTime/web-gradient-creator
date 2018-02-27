@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect';
 import chroma from 'chroma-js';
 
 import Theme from 'enums/Theme';
@@ -8,9 +9,9 @@ import {
 	SET_BACKGROUND,
 	SET_COLOR_SPACE,
 	SET_STOP_COUNT,
-	ADD_STOP,
-	UPDATE_STOP,
-	REMOVE_STOP
+	// ADD_STOP,
+	UPDATE_STOP
+	// REMOVE_STOP
 } from 'ducks/actionTypes';
 
 
@@ -122,11 +123,32 @@ const rootSelector = state => state.activeGradient;
 export const backgroundSelector = state => rootSelector(state).background;
 export const colorSpaceSelector = state => rootSelector(state).colorSpace;
 export const stopCountSelector = state => rootSelector(state).stopCount;
-export const stopsSelector = state => rootSelector(state).stops;
+
+// Selected stops contain a computed `css` property based on the current target color space.
+export const stopsSelector = createSelector(
+	rootSelector,
+	colorSpaceSelector,
+	(root, colorSpace) => root.stops.map(stop => {
+		return {
+			...stop,
+			css: chroma.lab(stop.l, stop.a, stop.b).css()
+		};
+	})
+);
+
 export const stopSelector = (state, stopIndex) => stopsSelector(state)[stopIndex];
 
-export const stopColorCSSSelector = (state, stopIndex) => {
-	const stop = stopSelector(state, stopIndex);
-	const color = chroma.lab(stop.l, stop.a, stop.b);
-	return color.css();
-};
+// Simulated gradient computation (CSS gradient)
+export const simulatedGradientSelector = createSelector(
+	colorSpaceSelector,
+	stopCountSelector,
+	stopsSelector,
+	(colorSpace, stopCount, stops) => {
+		const colors = stops.map(stop => chroma.lab(stop.l, stop.a, stop.b));
+		const scale = chroma.scale(colors).mode(colorSpace).colors(stopCount);
+		const divisor = stopCount - 1;
+		const cssStops = scale.map((color, i) => `${color} ${(i / divisor * 100).toFixed(1)}%`);
+		const css = `linear-gradient(to right, ${cssStops.join(', ')})`;
+		return css;
+	}
+);

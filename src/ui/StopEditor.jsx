@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+import chroma from 'chroma-js';
 
 import ColorSpaceSelector from 'ui/ColorSpaceSelector';
 import ColorSlider from 'ui/ColorSlider';
@@ -11,7 +13,6 @@ import {
 	setStopA,
 	setStopB,
 	stopSelector,
-	stopColorCSSSelector,
 	backgroundSelector
 } from 'ducks/activeGradient';
 
@@ -30,22 +31,63 @@ class StopEditor extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			cssFocus: false,
+			cssValue: ''
+		};
+
 		this.setStopColorSpace = (evt, i, value) => props.setStopColorSpace(props.stopIndex, value);
 		this.setStopL = this.bindSetNumberAction(props.setStopL);
 		this.setStopA = this.bindSetNumberAction(props.setStopA);
 		this.setStopB = this.bindSetNumberAction(props.setStopB);
+
+		this.focusCSS = this.focusCSS.bind(this);
+		this.blurCSS = this.blurCSS.bind(this);
+		this.handleChangeCSS = this.handleChangeCSS.bind(this);
 	}
 
 	bindSetNumberAction(action) {
 		return (evt, value) => action(this.props.stopIndex, +value);
 	}
 
+	focusCSS() {
+		this.setState({
+			cssFocus: true,
+			cssValue: this.props.stop.css
+		});
+	}
+
+	blurCSS() {
+		// Catch color parsing errors
+		try {
+			const color = chroma(this.state.cssValue).lab();
+			this.props.setStopL(this.props.stopIndex, color[0]);
+			this.props.setStopA(this.props.stopIndex, color[1]);
+			this.props.setStopB(this.props.stopIndex, color[2]);
+		}
+		catch(error) {
+			console.error(error);
+		}
+
+		this.setState({
+			cssFocus: false,
+			cssValue: ''
+		});
+	}
+
+	handleChangeCSS(evt, value) {
+		if (this.state.cssFocus) {
+			this.setState({ cssValue: value });
+		}
+	}
+
 	render() {
-		const { stopIndex, stop, stopColor } = this.props;
+		const { stopIndex, stop } = this.props;
+		const { cssFocus, cssValue } = this.state;
 
 		return (
 			<Paper className="stopEditor">
-				<div className="stopEditor__preview" style={{ background: stopColor }} />
+				<div className="stopEditor__preview" style={{ background: stop.css }} />
 				<div className="stopEditor__form">
 					<ColorSpaceSelector
 						value={stop.colorSpace}
@@ -78,7 +120,14 @@ class StopEditor extends React.Component {
 						step={1}
 					/>
 
-					<div className="stopEditor__rgb">{stopColor}</div>
+					<TextField
+						className="stopEditor__css"
+						name="css"
+						value={cssFocus ? cssValue : stop.css}
+						onChange={cssFocus ? this.handleChangeCSS : null}
+						onFocus={this.focusCSS}
+						onBlur={this.blurCSS}
+					/>
 				</div>
 			</Paper>
 		);
@@ -92,7 +141,6 @@ StopEditor.propTypes = {
 
 const mapStateToProps = (state, ownProps) => ({
 	stop: stopSelector(state, ownProps.stopIndex),
-	stopColor: stopColorCSSSelector(state, ownProps.stopIndex),
 	background: backgroundSelector(state)
 });
 

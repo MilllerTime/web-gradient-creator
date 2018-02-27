@@ -23,9 +23,8 @@ input[type=number] {
 	text-align: right;
 }
 
-.gradient-canvas {
-	display: block;
-	width: 100%;
-	max-width: 640px;
-	height: 60px;
+pre {
+	font-family: 'Roboto Mono', monospace;
+	line-height: 1.4;
+	white-space: pre-wrap;
 }
