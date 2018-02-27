@@ -22,20 +22,20 @@ import {
 
 const defaultState = {
 	background: Theme.Dark,
-	colorSpace: ColorSpace.LAB,
+	colorSpace: ColorSpace.HCL,
 	stopCount: 8,
 	stops: [
 		{
 			colorSpace: ColorSpace.LAB,
-			l: 94,
-			a: 0,
-			b: 30
+			l: 68,
+			a: 17,
+			b: 95
 		},
 		{
 			colorSpace: ColorSpace.LAB,
-			l: 60,
-			a: 8,
-			b: -62
+			l: 11,
+			a: 80,
+			b: -108
 		}
 	]
 };
