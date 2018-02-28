@@ -40,7 +40,7 @@ const App = ({ background }) => {
 			<div className="app">
 				<DocumentClass className={`theme--${background}`} />
 				<GradientConfig />
-				<div>
+				<div className="stop-editors">
 					<StopEditor stopIndex={0} />
 					<StopEditor stopIndex={1} />
 				</div>

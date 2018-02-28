@@ -19,7 +19,6 @@ import {
 
 
 
-
 const GradientConfig = (props) => {
 	const {
 		background,
@@ -32,7 +31,7 @@ const GradientConfig = (props) => {
 
 
 	return (
-		<React.Fragment>
+		<div className="gradient-config">
 			<div>
 				<SelectField
 					floatingLabelText="Background"
@@ -70,7 +69,7 @@ const GradientConfig = (props) => {
 					style={{ width: 40, marginLeft: 12 }}
 				/>
 			</div>
-		</React.Fragment>
+		</div>
 	);
 };
 

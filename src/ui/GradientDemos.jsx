@@ -20,7 +20,7 @@ const allRenderableColorSpaces = [
 
 const GradientDemos = ({ colorSpace, stopCount, stops }) => {
 	return (
-		<div>
+		<div className="gradient-demos">
 			{colorSpace !== ColorSpace.All &&
 				<Gradient
 					colorSpace={colorSpace}

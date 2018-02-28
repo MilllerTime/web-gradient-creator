@@ -3,11 +3,18 @@
 	padding: 40px 20px;
 }
 
-.app > div {
+.stop-editors,
+.gradient-config > div {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+}
+
+.gradient-demos {
+	width: 100%;
+	max-width: 630px;
+	margin: 0 auto;
 }
 
 .stop-count-slider > div {
