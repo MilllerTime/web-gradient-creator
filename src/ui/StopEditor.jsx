@@ -57,18 +57,22 @@ class StopEditor extends React.Component {
 		});
 	}
 
-	blurCSS() {
+	parseCSS(value) {
+		const { stopIndex, setStopL, setStopA, setStopB } = this.props;
 		// Catch color parsing errors
 		try {
-			const color = chroma(this.state.cssValue).lab();
-			this.props.setStopL(this.props.stopIndex, color[0]);
-			this.props.setStopA(this.props.stopIndex, color[1]);
-			this.props.setStopB(this.props.stopIndex, color[2]);
+			const color = chroma(value).lab();
+			setStopL(stopIndex, color[0]);
+			setStopA(stopIndex, color[1]);
+			setStopB(stopIndex, color[2]);
 		}
 		catch(error) {
 			console.error(error);
 		}
+	}
 
+	blurCSS() {
+		this.parseCSS(this.state.cssValue);
 		this.setState({
 			cssFocus: false,
 			cssValue: ''
@@ -76,6 +80,7 @@ class StopEditor extends React.Component {
 	}
 
 	handleChangeCSS(evt, value) {
+		this.parseCSS(value);
 		if (this.state.cssFocus) {
 			this.setState({ cssValue: value });
 		}
