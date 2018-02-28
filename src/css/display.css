@@ -1,0 +1,10 @@
+.hide {
+	display: none;
+}
+
+.invisible {
+	visibility: hidden;
+	opacity: 0;
+	/* Invisible elements are still clickable, but generally that isn't desirable so this util fixes that. */
+	pointer-events: none;
+}

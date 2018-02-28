@@ -1,0 +1,14 @@
+.fadeable {
+	transition: visibility 0.3s, opacity 0.3s;
+}
+
+.fade-in {
+	animation: 0.4s ease-out backwards fade-in;
+}
+
+@keyframes fade-in {
+	0% { opacity: 0; }
+
+	/* Animate to natural state. */
+	100% {}
+}

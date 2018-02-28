@@ -9,6 +9,8 @@ import startup from 'helpers/startup';
 
 import 'css/reset.css';
 import 'css/index.css';
+import 'css/animation.css';
+import 'css/display.css';
 
 
 
