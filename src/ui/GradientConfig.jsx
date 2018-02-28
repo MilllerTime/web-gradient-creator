@@ -46,8 +46,6 @@ const GradientConfig = (props) => {
 			<div>
 				<ColorSpaceSelector
 					floatingLabelText="Color Space"
-					hideRGB
-					hideAll
 					value={colorSpace}
 					onChange={setColorSpace}
 				/>

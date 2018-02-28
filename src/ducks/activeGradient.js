@@ -137,18 +137,3 @@ export const stopsSelector = createSelector(
 );
 
 export const stopSelector = (state, stopIndex) => stopsSelector(state)[stopIndex];
-
-// Simulated gradient computation (CSS gradient)
-export const simulatedGradientSelector = createSelector(
-	colorSpaceSelector,
-	stopCountSelector,
-	stopsSelector,
-	(colorSpace, stopCount, stops) => {
-		const colors = stops.map(stop => chroma.lab(stop.l, stop.a, stop.b));
-		const scale = chroma.scale(colors).mode(colorSpace).colors(stopCount);
-		const divisor = stopCount - 1;
-		const cssStops = scale.map((color, i) => `${color} ${(i / divisor * 100).toFixed(1)}%`);
-		const css = `linear-gradient(to right, ${cssStops.join(', ')})`;
-		return css;
-	}
-);

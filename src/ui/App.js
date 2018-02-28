@@ -10,7 +10,7 @@ import Theme from 'enums/Theme';
 import DocumentClass from 'ui/DocumentClass';
 import GradientConfig from 'ui/GradientConfig';
 import StopEditor from 'ui/StopEditor';
-import Gradient from 'ui/Gradient';
+import GradientDemos from 'ui/GradientDemos';
 import Toaster from 'ui/Toaster';
 import { backgroundSelector } from 'ducks/activeGradient';
 
@@ -44,9 +44,8 @@ const App = ({ background }) => {
 					<StopEditor stopIndex={0} />
 					<StopEditor stopIndex={1} />
 				</div>
-				<div>
-					<Gradient />
-				</div>
+				<GradientDemos />
+
 				<Toaster />
 			</div>
 		</MuiThemeProvider>
