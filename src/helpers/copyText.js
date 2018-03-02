@@ -1,8 +1,8 @@
 // Slightly modified version of answer here:
 // http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
 
-export default function copyTextToClipboard(text) {
-	var textArea = document.createElement("textarea");
+export default function copyText(text) {
+	const textArea = document.createElement("textarea");
 
 	//
 	// *** This styling is an extra step which is likely not required. ***
@@ -47,9 +47,9 @@ export default function copyTextToClipboard(text) {
 
 	textArea.select();
 
-	var copy_successful;
+	let copy_successful;
 	try {
-		var copy_successful = document.execCommand('copy');
+		copy_successful = document.execCommand('copy');
 	} catch (err) {
 		copy_successful = false;
 	}
@@ -61,7 +61,7 @@ export default function copyTextToClipboard(text) {
 		console.log(text);
 
 		// fallback
-		var ctrl_key = (navigator.platform.indexOf('Mac') === -1) ? 'Ctrl' : 'Cmd';
+		const ctrl_key = (navigator.platform.indexOf('Mac') === -1) ? 'Ctrl' : 'Cmd';
 		window.prompt('Copy to clipboard: ' + ctrl_key + '+C, Enter. Some browsers may truncate long strings!', text);
 	}
 
