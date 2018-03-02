@@ -12,12 +12,8 @@
 	padding: 20px;
 }
 
-.stopEditor .colorSlider {
-	margin-top: 6px;
-}
-
 .stopEditor__css {
-	margin-top: 18px;
+	margin-top: 4px;
 }
 
 .stopEditor__css input {

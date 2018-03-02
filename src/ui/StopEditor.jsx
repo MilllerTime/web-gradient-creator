@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import chroma from 'chroma-js';
 
 import ColorSpaceSelector from 'ui/ColorSpaceSelector';
-import ColorSlider from 'ui/ColorSlider';
+import ValueSlider from 'ui/ValueSlider';
 import {
 	setStopColorSpace,
 	setStopL,
@@ -100,7 +100,7 @@ class StopEditor extends React.Component {
 						hideAll
 						style={colorSpaceStyle}
 					/>
-					<ColorSlider
+					<ValueSlider
 						label="L"
 						value={stop.l}
 						onChange={this.setStopL}
@@ -108,7 +108,7 @@ class StopEditor extends React.Component {
 						max={100}
 						step={1}
 					/>
-					<ColorSlider
+					<ValueSlider
 						label="A"
 						value={stop.a}
 						onChange={this.setStopA}
@@ -116,7 +116,7 @@ class StopEditor extends React.Component {
 						max={250}
 						step={1}
 					/>
-					<ColorSlider
+					<ValueSlider
 						label="B"
 						value={stop.b}
 						onChange={this.setStopB}

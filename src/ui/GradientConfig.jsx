@@ -2,11 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import Slider from 'material-ui/Slider';
-import TextField from 'material-ui/TextField';
 
 import Theme from 'enums/Theme';
 import ColorSpaceSelector from 'ui/ColorSpaceSelector';
+import ValueSlider from 'ui/ValueSlider';
 import {
 	setBackground,
 	setColorSpace,
@@ -50,23 +49,13 @@ const GradientConfig = (props) => {
 				/>
 			</div>
 			<div>
-				<Slider
-					className="stop-count-slider"
+				<ValueSlider
 					value={stopCount}
 					onChange={setStopCount}
 					min={2}
 					max={16}
 					step={1}
 					style={{ width: 200 }}
-				/>
-				<TextField
-					name="stopCount"
-					type="number"
-					inputMode="numeric"
-					pattern="\d*"
-					value={stopCount}
-					onChange={setStopCount}
-					style={{ width: 40, marginLeft: 12 }}
 				/>
 			</div>
 		</div>

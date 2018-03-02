@@ -1,20 +1,21 @@
-.colorSlider {
+.valueSlider {
 	display: flex;
 	align-items: center;
-}
-
-.colorSlider__label {
-	margin-right: 16px;
-}
-
-.colorSlider__slider {
 	width: 100%;
 }
 
-.colorSlider__slider > div {
+.valueSlider__label {
+	margin-right: 16px;
+}
+
+.valueSlider__slider {
+	width: 100%;
+}
+
+.valueSlider__slider > div {
 	margin: 0 !important;
 }
 
-.colorSlider__text {
+.valueSlider__text {
 	margin-left: 16px;
 }

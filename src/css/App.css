@@ -11,12 +11,13 @@
 	align-items: center;
 }
 
+.gradient-config {
+	width: 260px;
+	margin: 0 auto;
+}
+
 .gradient-demos {
 	width: 100%;
 	max-width: 630px;
 	margin: 0 auto;
-}
-
-.stop-count-slider > div {
-	margin: 0 !important;
 }
