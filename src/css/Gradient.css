@@ -17,12 +17,15 @@
 	box-sizing: content-box;
 	display: flex;
 	padding-top: 4px;
-	height: 8px;
+	height: 20px;
 }
 
 .gradient__swatches > div {
 	flex-grow: 2;
 	margin-left: 4px;
+	transform: scaleY(0.4);
+	transition: transform 0.3s;
+	transform-origin: 0 0;
 }
 
 .gradient__swatches > div:first-child {
@@ -32,6 +35,14 @@
 
 .gradient__swatches > div:last-child {
 	flex-grow: 1;
+}
+
+.gradient:hover .gradient__swatches > div {
+	transform: scaleY(0.6);
+}
+
+.gradient .gradient__swatches > div:hover {
+	transform: scaleY(1);
 }
 
 .gradient__code {
@@ -50,8 +61,12 @@
 .gradient__code--visible {
 	max-height: 80px;
 	margin-bottom: 20px;
-	opacity: 0.8;
+	opacity: 0.75;
 	visibility: visible;
+}
+
+.gradient__code--visible:hover {
+	opacity: 1;
 }
 
 @media only screen and (max-width: 640px) {

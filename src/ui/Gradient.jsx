@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import chroma from 'chroma-js';
 
 import ColorSpace from 'enums/ColorSpace';
+import copyText from 'helpers/copyText';
 
 import 'css/Gradient.css';
 
@@ -56,10 +57,17 @@ class Gradient extends React.Component {
 				/>
 				<div className="gradient__swatches" onClick={this.toggleExpand}>
 					{swatches.map((color, i) => (
-						<div style={{ background: color }} key={i} />
+						<div
+							style={{ background: color }}
+							onClick={copyText.bind(null, color)}
+							key={i}
+						/>
 					))}
 				</div>
-				<pre className={classNames('gradient__code', isExpanded && 'gradient__code--visible')}>
+				<pre
+					className={classNames('gradient__code', isExpanded && 'gradient__code--visible')}
+					onClick={isExpanded ? copyText.bind(null, simulatedGradient) : null}
+				>
 					{simulatedGradient}
 				</pre>
 			</div>
