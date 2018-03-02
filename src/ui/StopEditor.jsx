@@ -97,7 +97,7 @@ class StopEditor extends React.Component {
 					<ColorSpaceSelector
 						value={stop.colorSpace}
 						onChange={this.setStopColorSpace}
-						hideAll
+						onlyPickable
 						style={colorSpaceStyle}
 					/>
 					<ValueSlider

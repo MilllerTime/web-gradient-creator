@@ -7,16 +7,13 @@ import ColorSpace from 'enums/ColorSpace';
 
 
 const valuesComplete = Object.values(ColorSpace);
-const valuesNoAll = valuesComplete.filter(v => v !== ColorSpace.All);
-const valuesNoRGB = valuesComplete.filter(v => v !== ColorSpace.RGB);
+const valuesPickable = valuesComplete.filter(v => v !== ColorSpace.All && v !== ColorSpace.LRGB);
 
 
-const ColorSpaceSelector = ({ hideAll, hideRGB, ...otherProps }) => {
+const ColorSpaceSelector = ({ onlyPickable, ...otherProps }) => {
 	let values = valuesComplete;
-	if (hideAll) {
-		values = valuesNoAll;
-	} else if (hideRGB) {
-		values = valuesNoRGB;
+	if (onlyPickable) {
+		values = valuesPickable;
 	}
 
 	return (
@@ -31,9 +28,8 @@ const ColorSpaceSelector = ({ hideAll, hideRGB, ...otherProps }) => {
 };
 
 ColorSpaceSelector.propTypes = {
-	// Hide specific values from the available options
-	hideAll: PropTypes.bool,
-	hideRGB: PropTypes.bool
+	// Hide values from the available options that don't apply to a color picker.
+	onlyPickable: PropTypes.bool
 };
 
 export default ColorSpaceSelector;
