@@ -10,7 +10,7 @@ import 'css/Gradient.css';
 
 
 const gradientSwatchesSelector = (colorSpace, stopCount, stops) => {
-	const colors = stops.map(stop => chroma.lab(stop.l, stop.a, stop.b));
+	const colors = stops.map(stop => chroma[stop.colorSpace](...stop.color));
 	return chroma.scale(colors).mode(colorSpace).colors(stopCount);
 };
 

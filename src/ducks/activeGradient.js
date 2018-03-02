@@ -27,15 +27,11 @@ const defaultState = {
 	stops: [
 		{
 			colorSpace: ColorSpace.LAB,
-			l: 68,
-			a: 17,
-			b: 95
+			color: [68, 17, 95]
 		},
 		{
 			colorSpace: ColorSpace.LAB,
-			l: 11,
-			a: 80,
-			b: -108
+			color: [11, 80, -108]
 		}
 	]
 };
@@ -61,7 +57,28 @@ function activeGradientReducer(state=defaultState, action) {
 			};
 
 		case UPDATE_STOP:
-			return updateStop(state, action)
+		{
+			const { stopIndex, patch } = action.payload;
+
+			const stop = state.stops[stopIndex];
+			const stopUpdate = {
+				...stop,
+				...patch
+			};
+
+			// If color space changed but color did not, convert color.
+			const colorSpaceChanged = patch.hasOwnProperty('colorSpace') && patch.colorSpace !== stop.colorSpace;
+			const colorChanged = patch.hasOwnProperty('color') && patch.color !== stop.color;
+			if (colorSpaceChanged && !colorChanged) {
+				const parsedColor = chroma[stop.colorSpace](...stop.color);
+				stopUpdate.color = parsedColor[patch.colorSpace]();
+			}
+
+			return {
+				...state,
+				stops: state.stops.map((stop, i) => i === stopIndex ? stopUpdate : stop)
+			};
+		}
 
 		default:
 			return state;
@@ -71,30 +88,13 @@ function activeGradientReducer(state=defaultState, action) {
 export default activeGradientReducer;
 
 
-// Helpers
-
-function updateStop(state, action) {
-	const { stopIndex, patch } = action.payload;
-
-	return {
-		...state,
-		stops: state.stops.map((stop, i) => {
-			if (i === stopIndex) {
-				return { ...stop, ...patch };
-			}
-			return stop;
-		})
-	};
-}
-
-
 
 
 /////////////
 // ACTIONS //
 /////////////
 
-const createUpdateStopAC = key => (stopIndex, value) => ({
+const createUpdateStopAction = key => (stopIndex, value) => ({
 	type: UPDATE_STOP,
 	payload: {
 		stopIndex,
@@ -106,10 +106,9 @@ export const setBackground = createSimpleAction(SET_BACKGROUND);
 export const setColorSpace = createSimpleAction(SET_COLOR_SPACE);
 export const setStopCount = createSimpleAction(SET_STOP_COUNT);
 
-export const setStopColorSpace = createUpdateStopAC('colorSpace');
-export const setStopL = createUpdateStopAC('l');
-export const setStopA = createUpdateStopAC('a');
-export const setStopB = createUpdateStopAC('b');
+export const setStopColorSpace = createUpdateStopAction('colorSpace');
+export const setStopColor = createUpdateStopAction('color');
+
 
 
 
@@ -125,13 +124,15 @@ export const colorSpaceSelector = state => rootSelector(state).colorSpace;
 export const stopCountSelector = state => rootSelector(state).stopCount;
 
 // Selected stops contain a computed `css` property based on the current target color space.
+// This could be sped up by memoizing the map function by both stop reference and index.
 export const stopsSelector = createSelector(
 	rootSelector,
-	colorSpaceSelector,
-	(root, colorSpace) => root.stops.map(stop => {
+	root => root.stops.map(stop => {
+		const chromaColor = chroma[stop.colorSpace](...stop.color);
 		return {
 			...stop,
-			css: chroma.lab(stop.l, stop.a, stop.b).css()
+			color: stop.color,
+			css: chromaColor.css()
 		};
 	})
 );
