@@ -1,6 +1,5 @@
 import store from 'store';
-import ToastType from 'enums/ToastType';
-import { pushToast } from 'ducks/toasts';
+import { showToast } from 'ducks/toasts';
 
 
 
@@ -71,12 +70,16 @@ function registerValidSW(swUrl) {
               // the fresh content will have been added to the cache.
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
-              store.dispatch(pushToast(ToastType.SW_UPDATE, 15000));
+              store.dispatch(showToast({
+                message: 'New content is available; tap to refresh.',
+                duration: 15000,
+                refresh: true
+              }));
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              store.dispatch(pushToast(ToastType.SW_INSTALL));
+              store.dispatch(showToast({ message: 'Ready for offline use.' }));
             }
           }
         };
@@ -108,7 +111,7 @@ function checkValidServiceWorker(swUrl) {
       }
     })
     .catch(() => {
-      store.dispatch(pushToast(ToastType.OFFLINE));
+      store.dispatch(showToast({ message: 'Running in offline mode.' }));
     });
 }
 

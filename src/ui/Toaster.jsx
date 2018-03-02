@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 
-import ToastType from 'enums/ToastType';
 import { activeToastSelector } from 'ducks/toasts';
 
 import 'css/Toaster.css';
@@ -63,24 +62,17 @@ class Toaster extends React.Component {
 			(!activeToast || hiding) && 'invisible'
 		);
 
+		const toastClass = classNames(
+			'toast',
+			activeToast && (activeToast.refresh || activeToast.link) && 'toast--interactive'
+		);
+
 		if (!activeToast) return null;
 		return (
 			<div className={toasterClass}>
-				{activeToast === ToastType.SW_INSTALL &&
-					<div className="toast">
-						Ready for offline use.
-					</div>
-				}
-				{activeToast === ToastType.SW_UPDATE &&
-					<div className="toast toast--interactive" onClick={this.refresh}>
-						New content is available; tap to refresh.
-					</div>
-				}
-				{activeToast === ToastType.OFFLINE &&
-					<div className="toast">
-						No network found - working offline.<br />Some content may not be available.
-					</div>
-				}
+				<div className={toastClass} onClick={activeToast.refresh ? this.refresh : null}>
+					{activeToast.message}
+				</div>
 			</div>
 		);
 	}

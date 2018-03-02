@@ -1,7 +1,13 @@
+import store from 'store';
+import { showToast } from 'ducks/toasts';
+
+
 // Slightly modified version of answer here:
 // http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
 
-export default function copyText(text) {
+// Copy action will show a toast automatically. By default, it will show a few characters from the copied text itself.
+// This can be overridden by passing in custom `displayText`.
+export default function copyText(text, displayText) {
 	const textArea = document.createElement("textarea");
 
 	//
@@ -50,6 +56,14 @@ export default function copyText(text) {
 	let copy_successful;
 	try {
 		copy_successful = document.execCommand('copy');
+		const maxChars = 32;
+		const toastSuffix = typeof displayText !== 'string'
+			? `"${text.length <= maxChars ? text : `${text.substr(0, maxChars)}...`}"`
+			: displayText
+		store.dispatch(showToast({
+			message: `Copied ${toastSuffix}`,
+			duration: 2000
+		}));
 	} catch (err) {
 		copy_successful = false;
 	}

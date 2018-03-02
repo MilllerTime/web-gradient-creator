@@ -55,7 +55,7 @@ class Gradient extends React.Component {
 					onClick={this.toggleExpand}
 					style={{ background: simulatedGradient }}
 				/>
-				<div className="gradient__swatches" onClick={this.toggleExpand}>
+				<div className="gradient__swatches">
 					{swatches.map((color, i) => (
 						<div
 							style={{ background: color }}
@@ -66,7 +66,7 @@ class Gradient extends React.Component {
 				</div>
 				<pre
 					className={classNames('gradient__code', isExpanded && 'gradient__code--visible')}
-					onClick={isExpanded ? copyText.bind(null, simulatedGradient) : null}
+					onClick={isExpanded ? copyText.bind(null, simulatedGradient, 'CSS gradient') : null}
 				>
 					{simulatedGradient}
 				</pre>
