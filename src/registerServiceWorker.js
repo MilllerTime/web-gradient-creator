@@ -71,8 +71,8 @@ function registerValidSW(swUrl) {
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
               store.dispatch(showToast({
-                message: 'New content is available; tap to refresh.',
-                duration: 15000,
+                message: 'Update is available - click to refresh.',
+                duration: 30000,
                 refresh: true
               }));
             } else {
@@ -111,7 +111,7 @@ function checkValidServiceWorker(swUrl) {
       }
     })
     .catch(() => {
-      store.dispatch(showToast({ message: 'Running in offline mode.' }));
+      store.dispatch(showToast({ message: 'Running in offline mode.', duration: 3000 }));
     });
 }
 
