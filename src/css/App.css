@@ -11,6 +11,10 @@
 	align-items: center;
 }
 
+.stop-editors {
+	align-items: start;
+}
+
 .gradient-config {
 	width: 260px;
 	margin: 0 auto;

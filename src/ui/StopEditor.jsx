@@ -24,6 +24,10 @@ const colorSpaceStyle = {
 	margin: '0 auto'
 };
 
+const cssErrorStyle = {
+	textAlign: 'center'
+};
+
 
 class StopEditor extends React.Component {
 
@@ -32,7 +36,8 @@ class StopEditor extends React.Component {
 
 		this.state = {
 			cssFocus: false,
-			cssValue: ''
+			cssValue: '',
+			cssInvalid: false
 		};
 
 		this.setStopColorSpace = (evt, i, value) => props.setStopColorSpace(props.stopIndex, value);
@@ -60,19 +65,23 @@ class StopEditor extends React.Component {
 	focusCSS() {
 		this.setState({
 			cssFocus: true,
-			cssValue: this.props.stop.css
+			cssValue: this.props.stop.css,
+			cssInvalid: false
 		});
 	}
 
+	// Returns true if successful
 	parseCSS(value) {
 		const { stopIndex, stop, setStopColor } = this.props;
 		// Catch color parsing errors
 		try {
 			const color = chroma(value)[stop.colorSpace]();
 			setStopColor(stopIndex, color);
+			return true;
 		}
 		catch(error) {
 			console.error(error);
+			return false;
 		}
 	}
 
@@ -80,20 +89,24 @@ class StopEditor extends React.Component {
 		this.parseCSS(this.state.cssValue);
 		this.setState({
 			cssFocus: false,
-			cssValue: ''
+			cssValue: '',
+			cssInvalid: false
 		});
 	}
 
 	handleChangeCSS(evt, value) {
-		this.parseCSS(value);
+		const parseSuccessful = this.parseCSS(value);
 		if (this.state.cssFocus) {
-			this.setState({ cssValue: value });
+			this.setState({
+				cssValue: value,
+				cssInvalid: !parseSuccessful
+			});
 		}
 	}
 
 	render() {
 		const { stop } = this.props;
-		const { cssFocus, cssValue } = this.state;
+		const { cssFocus, cssValue, cssInvalid } = this.state;
 		const { colorSpace } = stop;
 
 		return (
@@ -125,6 +138,8 @@ class StopEditor extends React.Component {
 						className="stopEditor__css"
 						name="css"
 						value={cssFocus ? cssValue : stop.css}
+						errorText={cssInvalid ? 'Unrecognized color' : null}
+						errorStyle={cssErrorStyle}
 						onChange={cssFocus ? this.handleChangeCSS : null}
 						onFocus={this.focusCSS}
 						onBlur={this.blurCSS}
