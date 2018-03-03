@@ -68,6 +68,8 @@ class StopEditor extends React.Component {
 			cssValue: this.props.stop.css,
 			cssInvalid: false
 		});
+
+		this.cssValueNode.input.select();
 	}
 
 	// Returns true if successful
@@ -143,6 +145,7 @@ class StopEditor extends React.Component {
 						onChange={cssFocus ? this.handleChangeCSS : null}
 						onFocus={this.focusCSS}
 						onBlur={this.blurCSS}
+						ref={n => this.cssValueNode = n}
 					/>
 				</div>
 			</Paper>
