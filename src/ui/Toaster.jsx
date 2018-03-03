@@ -29,16 +29,15 @@ class Toaster extends React.Component {
 	componentDidUpdate(prevProps, prevState) {
 		// Repond to toast changes
 		if (this.props.nextToast !== prevProps.nextToast) {
-			// Allow currently displaying toast time to fade out
+			// Allow currently displaying toast time to partially out
 			if (this.state.activeToast) {
 				this.setState({ hiding: true });
-				// TODO: Support more complex toast queueing
 				setTimeout(() => {
 					this.setState({
 						hiding: false,
 						activeToast: this.props.nextToast
 					});
-				}, transitionDuration);
+				}, transitionDuration * 0.36);
 			}
 			// Instantly show first toast
 			else {

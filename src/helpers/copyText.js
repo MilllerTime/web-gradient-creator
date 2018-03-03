@@ -62,7 +62,8 @@ export default function copyText(text, displayText) {
 			: displayText
 		store.dispatch(showToast({
 			message: `Copied ${toastSuffix}`,
-			duration: 2000
+			name: 'copyNotification',
+			duration: 2600
 		}));
 	} catch (err) {
 		copy_successful = false;

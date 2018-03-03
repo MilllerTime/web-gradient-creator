@@ -11,7 +11,15 @@ const defaultState = [];
 function toastsReducer(state=defaultState, action) {
 	switch (action.type) {
 		case SHOW_TOAST:
-			return [...state, action.payload];
+		{
+			const newToast = action.payload;
+			// Update toast with same name, otherwise append
+			if (newToast.name && state.some(toast => toast.name === newToast.name)) {
+				return state.map(toast => toast.name === newToast.name ? newToast : toast);
+			} else {
+				return [...state, newToast];
+			}
+		}
 
 		case HIDE_TOAST:
 			// Optional payload may contain a toast name. If truthy, remove all toasts with that name.
@@ -66,13 +74,19 @@ export const showToast = (toast) => {
 			);
 		}
 
+		let state = getState();
+		// If an update will occur on active toast, timer must be reset
+		const activeToast = activeToastSelector(state);
+		const willUpdateActive = activeToast && !!toast.name && toast.name === activeToast.name;
+
 		dispatch(showToastAC(toast));
 
-		// If we just added the first toast in the queue, start a timer.
-		const state = getState();
+		// If we just added or updated the first toast in the queue, start (or restart) the timer.
+		state = getState();
 		const toasts = toastsSelector(state);
-		if (toasts.length === 1) {
+		if (toasts.length === 1 || willUpdateActive) {
 			const duration = toast.duration || defaultDuration;
+			clearTimeout(currentTimerId);
 			currentTimerId = setTimeout(() => {
 				dispatch(hideToast())
 			}, duration);
