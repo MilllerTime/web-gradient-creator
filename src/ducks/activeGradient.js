@@ -10,8 +10,9 @@ import {
 	SET_COLOR_SPACE,
 	SET_STOP_COUNT,
 	// ADD_STOP,
-	UPDATE_STOP
-	// REMOVE_STOP
+	UPDATE_STOP,
+	// REMOVE_STOP,
+	LOAD_GRADIENT
 } from 'ducks/actionTypes';
 
 
@@ -27,17 +28,23 @@ const defaultState = {
 	stops: [
 		{
 			colorSpace: ColorSpace.LAB,
-			color: [68, 17, 95]
+			color: [68, 17, 95],
+			position: 0
 		},
 		{
 			colorSpace: ColorSpace.LAB,
-			color: [11, 80, -108]
+			color: [11, 80, -108],
+			position: 1
 		}
 	]
 };
 
 function activeGradientReducer(state=defaultState, action) {
 	switch (action.type) {
+
+		case LOAD_GRADIENT:
+			return action.payload
+
 		case SET_BACKGROUND:
 			return {
 				...state,
@@ -117,16 +124,16 @@ export const setStopColor = createUpdateStopAction('color');
 // SELECTORS //
 ///////////////
 
-const rootSelector = state => state.activeGradient;
+export const activeGradientSelector = state => state.activeGradient;
 
-export const backgroundSelector = state => rootSelector(state).background;
-export const colorSpaceSelector = state => rootSelector(state).colorSpace;
-export const stopCountSelector = state => rootSelector(state).stopCount;
+export const backgroundSelector = state => activeGradientSelector(state).background;
+export const colorSpaceSelector = state => activeGradientSelector(state).colorSpace;
+export const stopCountSelector = state => activeGradientSelector(state).stopCount;
 
 // Selected stops contain a computed `css` property based on the current target color space.
 // This could be sped up by memoizing the map function by both stop reference and index.
 export const stopsSelector = createSelector(
-	rootSelector,
+	activeGradientSelector,
 	root => root.stops.map(stop => {
 		const chromaColor = chroma[stop.colorSpace](...stop.color);
 		return {

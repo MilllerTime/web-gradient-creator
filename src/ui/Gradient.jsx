@@ -1,25 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
-import chroma from 'chroma-js';
 
 import ColorSpace from 'enums/ColorSpace';
 import copyText from 'helpers/copyText';
+import {
+	gradientSwatchesSelector,
+	simulatedGradientSelector
+} from 'helpers/gradientHelpers';
 
 import 'css/Gradient.css';
-
-
-
-const gradientSwatchesSelector = (colorSpace, stopCount, stops) => {
-	const colors = stops.map(stop => chroma[stop.colorSpace](...stop.color));
-	return chroma.scale(colors).mode(colorSpace).colors(stopCount);
-};
-
-const simulatedGradientSelector = (swatches) => {
-	const divisor = swatches.length - 1;
-	const cssStops = swatches.map((color, i) => `${color} ${(i / divisor * 100).toFixed(1)}%`);
-	const css = `linear-gradient(to right, ${cssStops.join(', ')})`;
-	return css;
-}
 
 
 

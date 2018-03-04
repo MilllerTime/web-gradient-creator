@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import Theme from 'enums/Theme';
 import ColorSpaceSelector from 'ui/ColorSpaceSelector';
@@ -16,10 +17,16 @@ import {
 	colorSpaceSelector,
 	stopCountSelector
 } from 'ducks/activeGradient';
+import { saveActiveGradient } from 'ducks/saves';
 
 import 'css/GradientConfig.css';
 
 
+const saveButtonStyle = {
+	display: 'block',
+	width: 200,
+	margin: '16px auto 0'
+};
 
 
 const GradientConfig = (props) => {
@@ -29,7 +36,8 @@ const GradientConfig = (props) => {
 		stopCount,
 		setBackground,
 		setColorSpace,
-		setStopCount
+		setStopCount,
+		saveActiveGradient
 	} = props;
 
 
@@ -60,6 +68,14 @@ const GradientConfig = (props) => {
 					style={{ width: 200 }}
 				/>
 			</LineItem>
+
+			<RaisedButton
+				label="Save Gradient"
+				onClick={saveActiveGradient}
+				primary
+				className="saveButton"
+				style={saveButtonStyle}
+			/>
 		</Paper>
 	);
 };
@@ -74,6 +90,7 @@ const mapDispatchToProps = dispatch => ({
 	setBackground: (evt, index, value) => dispatch(setBackground(value)),
 	setColorSpace: (evt, index, value) => dispatch(setColorSpace(value)),
 	setStopCount: (evt, value) => dispatch(setStopCount(+value)),
+	saveActiveGradient: () => dispatch(saveActiveGradient())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GradientConfig);

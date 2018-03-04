@@ -3,6 +3,7 @@ import ReduxThunk from 'redux-thunk';
 
 import uiReducer from 'ducks/ui';
 import activeGradientReducer from 'ducks/activeGradient';
+import savesReducer from 'ducks/saves';
 import toastsReducer from 'ducks/toasts';
 
 
@@ -10,6 +11,7 @@ import toastsReducer from 'ducks/toasts';
 const rootReducer = combineReducers({
 	ui: uiReducer,
 	activeGradient: activeGradientReducer,
+	saves: savesReducer,
 	toasts: toastsReducer
 });
 

@@ -21,3 +21,8 @@ export const SET_STOP_COUNT = 'SET_STOP_COUNT';
 export const ADD_STOP = 'ADD_STOP';
 export const UPDATE_STOP = 'UPDATE_STOP';
 export const REMOVE_STOP = 'REMOVE_STOP';
+
+// Saves
+export const SAVE_GRADIENT = 'SAVE_GRADIENT';
+export const LOAD_GRADIENT = 'LOAD_GRADIENT';
+export const DELETE_GRADIENT = 'DELETE_GRADIENT';
