@@ -3,21 +3,11 @@
 	padding: 40px 20px;
 }
 
-.stop-editors,
-.gradient-config > div {
+.stop-editors {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	align-items: center;
-}
-
-.stop-editors {
 	align-items: start;
-}
-
-.gradient-config {
-	width: 260px;
-	margin: 0 auto;
 }
 
 .gradient-demos {

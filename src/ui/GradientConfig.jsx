@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -14,6 +16,8 @@ import {
 	colorSpaceSelector,
 	stopCountSelector
 } from 'ducks/activeGradient';
+
+import 'css/GradientConfig.css';
 
 
 
@@ -30,25 +34,23 @@ const GradientConfig = (props) => {
 
 
 	return (
-		<div className="gradient-config">
-			<div>
+		<Paper className="gradient-config">
+			<LineItem label="Background">
 				<SelectField
-					floatingLabelText="Background"
 					value={background}
 					onChange={setBackground}
 				>
 					<MenuItem value={Theme.Dark} primaryText="Dark" />
 					<MenuItem value={Theme.Light} primaryText="Light" />
 				</SelectField>
-			</div>
-			<div>
+			</LineItem>
+			<LineItem label="Color Space">
 				<ColorSpaceSelector
-					floatingLabelText="Color Space"
 					value={colorSpace}
 					onChange={setColorSpace}
 				/>
-			</div>
-			<div>
+			</LineItem>
+			<LineItem label="Stop Count">
 				<ValueSlider
 					value={stopCount}
 					onChange={setStopCount}
@@ -57,8 +59,8 @@ const GradientConfig = (props) => {
 					step={1}
 					style={{ width: 200 }}
 				/>
-			</div>
-		</div>
+			</LineItem>
+		</Paper>
 	);
 };
 
@@ -75,3 +77,20 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GradientConfig);
+
+
+
+
+const LineItem = ({ label, children }) => {
+	return (
+		<div className="gradient-config__option">
+			<label className="gradient-config__label">{label}:</label>
+			<div className="gradient-config__input">{children}</div>
+		</div>
+	);
+};
+
+LineItem.propTypes = {
+	label: PropTypes.string.isRequired,
+	children: PropTypes.element.isRequired
+};

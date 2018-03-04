@@ -1,0 +1,36 @@
+.gradient-config {
+	width: 100%;
+	max-width: 460px;
+	margin: 0 auto;
+	padding: 12px 20px;
+}
+
+.gradient-config__option {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.gradient-config__label {
+	flex-shrink: 0;
+}
+
+.gradient-config__input {
+	width: 100%;
+	max-width: 256px;
+}
+
+
+
+@media only screen and (max-width: 480px) {
+	.gradient-config__option {
+		display: block;
+		max-width: 256px;
+		margin: 0 auto;
+	}
+
+	.gradient-config__label {
+		font-size: 0.8rem;
+		opacity: 0.72;
+	}
+}
