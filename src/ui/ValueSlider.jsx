@@ -65,7 +65,7 @@ class ValueSlider extends React.Component {
 					inputStyle={inputActive ? null : textInputStyle}
 					underlineStyle={inputActive ? null : textFieldUnderlineStyle}
 					name={label || 'val'}
-					value={value}
+					value={max <= 1 ? value.toFixed(2) : Math.round(value)}
 					onChange={onChange}
 					onFocus={this.handleInputFocus}
 					onBlur={this.handleInputBlur}
