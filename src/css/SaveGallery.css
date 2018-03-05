@@ -16,14 +16,23 @@
 }
 
 .saveGallery__item:hover .saveGallery__item__gradient {
-	/* Scale from 260px to 230px */
-	transform: scaleX(0.885);
+	transform: scaleX(0.68);
 }
 
+.saveGallery__item:hover .saveGallery__item__edit,
 .saveGallery__item:hover .saveGallery__item__delete {
 	transform: scale(1, 1);
 	opacity: 1;
 	visibility: visible;
+}
+
+/* Transition delays must be !important to override material-ui's inline styles */
+.saveGallery__item:hover .saveGallery__item__edit {
+	transition-delay: 0.11s !important;
+}
+
+.saveGallery__item:hover .saveGallery__item__delete {
+	transition-delay: 0.03s !important;
 }
 
 
@@ -32,32 +41,24 @@
 	z-index: 2;
 	width: 100%;
 	height: 40px;
-	border-radius: 2.4px;
+	border-radius: 2px;
 	transition: transform 0.3s;
 	transform-origin: 0 0;
 }
 
+.saveGallery__item__edit,
 .saveGallery__item__delete {
-	position: absolute;
-	z-index: 1;
-	top: 10px;
-	right: 0;
-	background-color: #db0025;
-	outline: none;
-	border: none;
-	border-radius: 50%;
-	width: 20px;
-	height: 20px;
-	padding: 0;
-	font-size: 1.1rem;
-	color: #FFF;
 	opacity: 0;
 	visibility: hidden;
 	transform: scale(0.25, 0.25);
-	transition-property: background-color, transform, opacity, visibility;
+	transition-property: transform, opacity, visibility;
 	transition-duration: 0.3s;
 }
 
-.saveGallery__item__delete:hover {
-	background-color: #8a0017;
+.saveGallery__item__edit {
+	transition-delay: 0s !important;
+}
+
+.saveGallery__item__delete {
+	transition-delay: 0.06s !important;
 }

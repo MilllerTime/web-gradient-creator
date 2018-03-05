@@ -6,9 +6,23 @@
 	animation: 0.4s ease-out backwards fade-in;
 }
 
+.fade-slide-up {
+	animation: 0.4s ease-out backwards fade-slide-up;
+}
+
 @keyframes fade-in {
 	0% { opacity: 0; }
 
 	/* Animate to natural state. */
+	100% {}
+}
+
+@keyframes fade-slide-up {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	// Animate to natural state.
 	100% {}
 }
