@@ -6,6 +6,12 @@
 	margin-top: 40px;
 }
 
+.saveGallery__heading {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 12px;
+}
+
 .saveGallery__item {
 	position: relative;
 	width: 100%;

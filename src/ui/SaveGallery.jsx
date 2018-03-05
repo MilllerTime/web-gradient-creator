@@ -18,9 +18,14 @@ import 'css/SaveGallery.css';
 
 const SaveGallery = ({ saves, loadGradient, deleteGradient }) => {
 
+	const hasSaves = !!saves.length;
+
 	return (
 		<div className="saveGallery">
-			{saves.map((gradient, index) => (
+			{hasSaves &&
+				<h2 className="saveGallery__heading fade-slide-up">My Gradients</h2>
+			}
+			{hasSaves && saves.map((gradient, index) => (
 				<GradientPreview
 					gradient={gradient}
 					index={index}

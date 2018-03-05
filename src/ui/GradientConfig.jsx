@@ -143,7 +143,9 @@ const hintIconStyle = {
 const hintTooltipStyle = {
 	fontSize: '0.8rem',
 	lineHeight: '1.5em',
+	letterSpacing: '0.04em',
 	padding: '4px 8px',
+	top: 18,
 	pointerEvents: 'none'
 };
 
