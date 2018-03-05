@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-// import { cyan500, cyan700, grey400 } from 'material-ui/styles/colors';
+import { lightBlue500, lightBlue700, grey400, grey500, grey600 } from 'material-ui/styles/colors';
 
 import Theme from 'enums/Theme';
 import DocumentClass from 'ui/DocumentClass';
@@ -18,26 +18,37 @@ import { backgroundSelector } from 'ducks/activeGradient';
 import 'css/App.css';
 
 
-// const themeLight = getMuiTheme({
 
-// });
+const themeDark = getMuiTheme({
+	...darkBaseTheme,
+	palette: {
+		...darkBaseTheme.palette,
+		accent1Color: lightBlue500,
+		accent2Color: lightBlue500,
+		accent3Color: grey500,
+		primary1Color: lightBlue700,
+		primary2Color: lightBlue700,
+		primary3Color: grey600
+	}
+});
 
-// const themeDark = getMuiTheme({
-// 	palette: {
-// 		textColor: '#FFF',
-// 		primary1Color: '#777',
-// 		primary2Color: '#AAA',
-// 		primary3Color: '#444',
-// 		accent1Color: cyan500,
-// 		accent2Color: cyan700,
-// 		accent3Color: grey400,
-// 	}
-// });
+const themeLight = getMuiTheme({
+	...lightBaseTheme,
+	palette: {
+		...lightBaseTheme.palette,
+		accent1Color: lightBlue500,
+		accent2Color: lightBlue500,
+		accent3Color: grey500,
+		primary1Color: lightBlue500,
+		primary2Color: lightBlue500,
+		primary3Color: grey400
+	}
+});
 
 
 const App = ({ background }) => {
 	return (
-		<MuiThemeProvider muiTheme={getMuiTheme(background === Theme.Dark ? darkBaseTheme : lightBaseTheme)}>
+		<MuiThemeProvider muiTheme={background === Theme.Dark ? themeDark : themeLight}>
 			<div className="app">
 				<DocumentClass className={`theme--${background}`} />
 				<AppHeader />

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { lightBlue600 } from 'material-ui/styles/colors';
 
 import Slider from 'material-ui/Slider';
 import TextField from 'material-ui/TextField';
@@ -12,7 +13,7 @@ const textFieldStyle = {
 };
 
 const textInputStyle = {
-	color: '#0097A7'
+	color: lightBlue600
 };
 
 const textFieldUnderlineStyle = {
