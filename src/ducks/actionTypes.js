@@ -4,6 +4,8 @@
 ////////////////////////
 
 export const SET_ACTIVE_STOP = 'SET_ACTIVE_STOP';
+export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';
+export const SET_VIEWPORT_WIDTH = 'SET_VIEWPORT_WIDTH';
 export const SHOW_TOAST = 'SHOW_TOAST';
 export const HIDE_TOAST = 'HIDE_TOAST';
 

@@ -18,6 +18,11 @@ import {
 	colorSpaceSelector,
 	stopCountSelector
 } from 'ducks/activeGradient';
+import {
+	drawerOpenSelector,
+	viewportWidthSelector,
+	toggleDrawer
+} from 'ducks/ui';
 import { saveActiveGradient } from 'ducks/saves';
 
 import 'css/GradientConfig.css';
@@ -33,26 +38,33 @@ const saveButtonStyle = {
 	margin: '16px auto 0'
 };
 
-const forceOpenDrawer = window.innerWidth >= 1000;
+
 
 
 const GradientConfig = (props) => {
 	const {
+		// active gradient
 		background,
 		colorSpace,
 		stopCount,
 		setBackground,
 		setColorSpace,
 		setStopCount,
-		saveActiveGradient
+		// saving
+		saveActiveGradient,
+		// ui
+		drawerOpen,
+		forceDrawerOpen,
+		toggleDrawer
 	} = props;
 
 
 	return (
 		<Drawer
 			className="gradient-config"
-			open={forceOpenDrawer}
-			docked={forceOpenDrawer}
+			open={drawerOpen || forceDrawerOpen}
+			docked={forceDrawerOpen}
+			onRequestChange={toggleDrawer}
 			swipeAreaWidth={20}
 			width={300}
 			containerStyle={drawerContainerStyle}
@@ -99,14 +111,17 @@ const GradientConfig = (props) => {
 const mapStateToProps = state => ({
 	background: backgroundSelector(state),
 	colorSpace: colorSpaceSelector(state),
-	stopCount: stopCountSelector(state)
+	stopCount: stopCountSelector(state),
+	drawerOpen: drawerOpenSelector(state),
+	forceDrawerOpen: viewportWidthSelector(state) >= 1000
 });
 
 const mapDispatchToProps = dispatch => ({
 	setBackground: (evt, index, value) => dispatch(setBackground(value)),
 	setColorSpace: (evt, index, value) => dispatch(setColorSpace(value)),
 	setStopCount: (evt, value) => dispatch(setStopCount(+value)),
-	saveActiveGradient: () => dispatch(saveActiveGradient())
+	saveActiveGradient: () => dispatch(saveActiveGradient()),
+	toggleDrawer: (...args) => dispatch(toggleDrawer(...args))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GradientConfig);
