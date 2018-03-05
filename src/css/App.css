@@ -1,6 +1,6 @@
 .app {
-	margin: 0 auto;
-	padding: 40px 20px;
+	padding: 20px 4px;
+	padding-left: 304px;
 }
 
 .stop-editors {
@@ -14,4 +14,11 @@
 	width: 100%;
 	max-width: 630px;
 	margin: 0 auto;
+}
+
+
+@media only screen and (max-width: 1000px) {
+	.app {
+		padding: 20px 4px;
+	}
 }

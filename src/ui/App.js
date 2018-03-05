@@ -11,7 +11,6 @@ import DocumentClass from 'ui/DocumentClass';
 import GradientConfig from 'ui/GradientConfig';
 import StopEditor from 'ui/StopEditor';
 import GradientDemos from 'ui/GradientDemos';
-import SaveGallery from 'ui/SaveGallery';
 import Toaster from 'ui/Toaster';
 import { backgroundSelector } from 'ducks/activeGradient';
 
@@ -46,8 +45,6 @@ const App = ({ background }) => {
 					<StopEditor stopIndex={1} />
 				</div>
 				<GradientDemos />
-
-				<SaveGallery />
 
 				<Toaster />
 			</div>
