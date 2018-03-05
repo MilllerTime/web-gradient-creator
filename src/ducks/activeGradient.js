@@ -27,13 +27,13 @@ const defaultState = {
 	stopCount: 8,
 	stops: [
 		{
-			colorSpace: ColorSpace.LAB,
-			color: [68, 17, 95],
+			colorSpace: ColorSpace.HCL,
+			color: [76, 75, 68],
 			position: 0
 		},
 		{
-			colorSpace: ColorSpace.LAB,
-			color: [11, 80, -108],
+			colorSpace: ColorSpace.HCL,
+			color: [306, 108, 23],
 			position: 1
 		}
 	]
