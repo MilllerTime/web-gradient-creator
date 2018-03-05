@@ -8,6 +8,7 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 
 import Theme from 'enums/Theme';
 import DocumentClass from 'ui/DocumentClass';
+import AppHeader from 'ui/AppHeader';
 import GradientConfig from 'ui/GradientConfig';
 import StopEditor from 'ui/StopEditor';
 import GradientDemos from 'ui/GradientDemos';
@@ -39,6 +40,7 @@ const App = ({ background }) => {
 		<MuiThemeProvider muiTheme={getMuiTheme(background === Theme.Dark ? darkBaseTheme : lightBaseTheme)}>
 			<div className="app">
 				<DocumentClass className={`theme--${background}`} />
+				<AppHeader />
 				<GradientConfig />
 				<div className="stop-editors">
 					<StopEditor stopIndex={0} />

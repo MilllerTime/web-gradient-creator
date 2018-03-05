@@ -8,8 +8,17 @@
 }
 
 .gradient-config__label {
-	font-size: 0.8rem;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+}
+
+.gradient-config__labelText {
+	position: relative;
 	opacity: 0.72;
+	font-size: 0.8rem;
+	padding-right: 4px;
+	top: 1px;
 }
 
 .gradient-config__input {

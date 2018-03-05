@@ -1,6 +1,19 @@
 .app {
-	padding: 20px 4px;
 	padding-left: 304px;
+	padding-right: 4px;
+	padding-bottom: 20px;
+}
+
+.appHeader {
+	display: flex;
+	align-items: center;
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+.appHeader__menuBtn {
+	/* Must override material-ui inline styles */
+	display: none !important;
 }
 
 .stop-editors {
@@ -19,6 +32,10 @@
 
 @media only screen and (max-width: 1000px) {
 	.app {
-		padding: 20px 4px;
+		padding: 0 4px 20px;
+	}
+
+	.appHeader__menuBtn {
+		display: block !important;
 	}
 }

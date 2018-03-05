@@ -5,6 +5,8 @@ import Drawer from 'material-ui/Drawer';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
+import HelpIcon from 'material-ui/svg-icons/action/help';
 
 import Theme from 'enums/Theme';
 import ColorSpaceSelector from 'ui/ColorSpaceSelector';
@@ -33,9 +35,7 @@ const drawerContainerStyle = {
 };
 
 const saveButtonStyle = {
-	display: 'block',
-	width: 200,
-	margin: '16px auto 0'
+	marginTop: 20
 };
 
 
@@ -69,7 +69,7 @@ const GradientConfig = (props) => {
 			width={300}
 			containerStyle={drawerContainerStyle}
 		>
-				<LineItem label="Background">
+				<LineItem label="Background" hint={<span>Change the app's<br />background color.</span>}>
 					<SelectField
 						value={background}
 						onChange={setBackground}
@@ -78,13 +78,13 @@ const GradientConfig = (props) => {
 						<MenuItem value={Theme.Light} primaryText="Light" />
 					</SelectField>
 				</LineItem>
-				<LineItem label="Color Space">
+				<LineItem label="Color Space" hint={<span>The color space used to<br />generate gradients.</span>}>
 					<ColorSpaceSelector
 						value={colorSpace}
 						onChange={setColorSpace}
 					/>
 				</LineItem>
-				<LineItem label="Stop Count">
+				<LineItem label="Stop Count" hint={<span>Number of color stops to<br />generate between user stops.</span>}>
 					<ValueSlider
 						value={stopCount}
 						onChange={setStopCount}
@@ -99,6 +99,7 @@ const GradientConfig = (props) => {
 					label="Save Gradient"
 					onClick={saveActiveGradient}
 					primary
+					fullWidth
 					className="saveButton"
 					style={saveButtonStyle}
 				/>
@@ -128,11 +129,40 @@ export default connect(mapStateToProps, mapDispatchToProps)(GradientConfig);
 
 
 
+const hintStyle = {
+	width: 22,
+	height: 22,
+	padding: 3
+};
 
-const LineItem = ({ label, children }) => {
+const hintIconStyle = {
+	width: 16,
+	height: 16
+};
+
+const hintTooltipStyle = {
+	fontSize: '0.8rem',
+	lineHeight: '1.5em',
+	padding: '4px 8px',
+	pointerEvents: 'none'
+};
+
+const LineItem = ({ label, hint, children }) => {
 	return (
 		<div className="gradient-config__option">
-			<label className="gradient-config__label">{label}</label>
+			<label className="gradient-config__label">
+				<span className="gradient-config__labelText">{label}</span>
+				{hint &&
+					<IconButton
+						tooltip={hint}
+						style={hintStyle}
+						iconStyle={hintIconStyle}
+						tooltipStyles={hintTooltipStyle}
+					>
+						<HelpIcon color="#999" />
+					</IconButton>
+				}
+			</label>
 			<div className="gradient-config__input">{children}</div>
 		</div>
 	);
