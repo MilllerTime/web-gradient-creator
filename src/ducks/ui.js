@@ -2,7 +2,8 @@ import createSimpleAction from 'helpers/createSimpleAction';
 import {
 	SET_ACTIVE_STOP,
 	TOGGLE_DRAWER,
-	SET_VIEWPORT_WIDTH
+	SET_VIEWPORT_WIDTH,
+	LOAD_GRADIENT
 } from 'ducks/actionTypes';
 
 
@@ -35,6 +36,13 @@ function uiReducer(state=defaultState, action) {
 			return {
 				...state,
 				viewportWidth: action.payload
+			};
+
+		// After loading a saved gradient, we should close the drawer (only affects mobile)
+		case LOAD_GRADIENT:
+			return {
+				...state,
+				drawerOpen: false
 			};
 
 		default:

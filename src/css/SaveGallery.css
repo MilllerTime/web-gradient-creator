@@ -21,7 +21,8 @@
 	margin-top: 10px;
 }
 
-.saveGallery__item:hover .saveGallery__item__gradient {
+.saveGallery__item:hover .saveGallery__item__gradient,
+.saveGallery__item.forceOpen .saveGallery__item__gradient {
 	transform: scaleX(0.68);
 }
 
