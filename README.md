@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/MilllerTime/web-gradient-creator/master/examples/sunset-gradient.png" align="middle" width="100%" height="60">
+
 # Super Powered Web Gradient Creator
 
 Create gradients in a variety of color spaces and generate a CSS compatible approximation.
@@ -15,13 +17,14 @@ Check it out! [gradients.cmiller.tech](https://gradients.cmiller.tech)
  - LAB
  - HCL
 
- ColorZilla has an [awesome gradient generator](http://www.colorzilla.com/gradient-editor/) but it's limited to RGB. Even if you set color stops in HSL, browsers will render the final gradient by interpolating RGB representations of the colors.
+ ColorZilla has an [awesome gradient generator](http://www.colorzilla.com/gradient-editor/) but it's limited to RGB. Even if you set color stops in HSL, browsers will render the final gradient by interpolating RGB representations of the colors. This can be limiting.
 
  The color space you choose to interpolate the values of a gradient can greatly affect the overall result. This experiment works around browser limitations and simulates CSS gradients in other color spaces. The generated gradients are still rendered in RGB, but they are nearly indistinguishable from a real gradient in the target color space. This is accomplished by adding several properly interpolated color stops in between the ones you set. With the extra help, the browser rendered gradients look good.
 
 
  ## TODO
 
+ - Add a more intuitive color picker
  - Support an arbitrary number of color stops
  - Support other gradient types (radial, diagonal, etc.)
 
