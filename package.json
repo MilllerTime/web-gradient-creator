@@ -12,7 +12,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
-    "react-scripts": "1.1.1",
+    "react-scripts": "2.0.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
@@ -26,5 +26,14 @@
   },
   "devDependencies": {
     "deep-freeze": "^0.0.1"
-  }
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 ChromeAndroid versions",
+    "last 2 Firefox versions",
+    "last 2 FirefoxAndroid versions",
+    "last 2 Edge versions",
+    "last 2 Safari versions",
+    "last 2 iOS versions"
+  ]
 }
